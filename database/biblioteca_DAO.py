@@ -10,4 +10,13 @@ class BibliotecaDAO:
     def __init__(self):
         pass
 
-    # TODO
+    def get_biblioteche(self):
+        cnx = DBConnect.get_connection()
+        cursor = cnx.cursor()
+        cursor.execute("SELECT nome FROM biblioteca ORDER BY nome")
+        risultato = []
+        for riga in cursor:
+            risultato.append(riga[0])
+        cursor.close()
+        cnx.close()
+        return risultato
